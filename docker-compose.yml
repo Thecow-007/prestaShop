@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: ps-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    networks:
+      - prestashop-net
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  prestashop:
+    image: prestashop/prestashop:latest
+    container_name: ps-app
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    environment:
+      - DB_SERVER=${DB_SERVER}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWD=${DB_PASSWD}
+      - PS_INSTALL_AUTO=1
+      - PS_FOLDER_ADMIN=admin-dev
+      - PS_FOLDER_INSTALL=install_dev
+      - PS_DOMAIN=prestashop.danielbierman.ca
+      - PS_HANDLE_DYNAMIC_DOMAIN=0
+      - PS_ENABLE_SSL=1
+    networks:
+      - prestashop-net
+      - web-main-net
+
+networks:
+  prestashop-net:
+  web-main-net:
+    external: true
+
+volumes:
+  mysql_data:
