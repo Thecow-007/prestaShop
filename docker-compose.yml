@@ -27,9 +27,9 @@ services:
       - PS_INSTALL_AUTO=1
       - PS_FOLDER_ADMIN=admin-dev
       - PS_FOLDER_INSTALL=install_dev
-      - PS_DOMAIN=prestashop.danielbierman.ca
+      - PS_DOMAIN=localhost:8080 # Changed to localhost
       - PS_HANDLE_DYNAMIC_DOMAIN=0
-      - PS_ENABLE_SSL=1
+      - PS_ENABLE_SSL=0 # Set to 0 for easier local testing
     networks:
       - prestashop-net
       - web-main-net
