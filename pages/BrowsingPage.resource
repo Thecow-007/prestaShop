@@ -3,7 +3,6 @@ Library    SeleniumLibrary
 Library    Collections
 
 *** Variables ***
-# Reverting to your original working CSS paths
 ${ACCESSORIES_LINK}       css=#top-menu > li:nth-child(2) > div.ps-mainmenu__tree-item-wrapper > a
 ${STATIONERY_LINK}        css=#submenu-category-6 > div > div > div.submenu__left.col-sm-3 > a.submenu__left-item.active
 ${SORT_DROPDOWN}          id:sort_dropdown_button
@@ -13,7 +12,6 @@ ${PRODUCT_PRICE}          css:.product-miniature__price
 *** Keywords ***
 Open Accessories Category
     Wait Until Element Is Visible    ${ACCESSORIES_LINK}    10s
-    # Using your original Click Link logic
     Click Link    ${ACCESSORIES_LINK}
 
 Hover Accessories And Select Stationery
