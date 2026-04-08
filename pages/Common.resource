@@ -9,7 +9,7 @@ ${BROWSER}                chrome
 *** Keywords ***
 Open Home Page
     ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    ${args}=    Create List    --disable-blink-features=AutomationControlled    --start-maximized    --headless
+    ${args}=    Create List    --disable-blink-features=AutomationControlled    --start-maximized
     FOR    ${arg}    IN    @{args}
         Call Method    ${chrome_options}    add_argument    ${arg}
     END

@@ -2,32 +2,56 @@
 
 This repository contains the functional Robot Framework test suite for PrestaShop 9 (Hummingbird theme).
 
-## Prerequisites
+## Docker setup (required)
 
-Ensure your local PrestaShop instance is running via Docker on `http://localhost:8080/`.
+1. Start Docker Desktop.
+2. From the project root, start the stack:
 
-To install the required Python libraries for test automation, run:
-```bash
+```powershell
+docker compose up -d
+```
+
+3. Wait until both containers are running:
+
+```powershell
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Image}}"
+```
+
+Expected container names in this project:
+- `ps-db` (MySQL)
+- `ps-app` (PrestaShop)
+
+4. Open PrestaShop at:
+- `http://localhost:8080/`
+
+## Python test environment setup
+
+Install test dependencies from the repository root:
+
+```powershell
 pip install -r requirements.txt
 ```
 
-## Running Tests
+## Required test data reset (run before tests)
 
-Execute the complete test suite from the root directory:
-```bash
+Run the following PowerShell here-string command before executing the test suite. This enforces known stock states required by the tests:
+
+```powershell
+@"
+UPDATE ps_stock_available SET quantity = 0, out_of_stock = 0 WHERE id_product = 8;
+UPDATE ps_product SET available_for_order = 0 WHERE id_product = 8;
+UPDATE ps_stock_available SET quantity = 10, out_of_stock = 0 WHERE id_product = 2;
+"@ | docker exec -i ps-db mysql -u root -padmin prestashop
+```
+
+What this does:
+- Product 2 is set to in stock (quantity 10) for add-to-cart and cart-flow tests.
+- Product 8 is forced out of stock and unavailable for order for out-of-stock validation tests.
+
+## Running tests
+
+Run all tests from the repository root:
+
+```powershell
 python -m robot tests/
 ```
-
-## Important: Test Data Configuration
-
-The automation tests (`TC-05-02` Out-of-Stock and `TC-06-02` Quantity Exceeding Stock) rely on definitive database stock constraints to trigger PrestaShop's UI validations reliably. 
-
-Before running the tests on a **fresh** local Docker instance, you must configure the stock data for specific test products. Run the following command against your PrestaShop MySQL container (assuming your PrestaShop DB container is named `prestashop-db` or similar):
-
-```bash
-docker exec -i mysql sh -c 'mysql -u root -pprestashop prestashop -e "UPDATE ps_stock_available SET quantity = 0, out_of_stock = 0 WHERE id_product = 8; UPDATE ps_product SET available_for_order = 0 WHERE id_product = 8; UPDATE ps_stock_available SET quantity = 10, out_of_stock = 0 WHERE id_product = 2;"'
-```
-*Note: Adjust `mysql -u root -pprestashop` to match your local `.env` database credentials.*
-
-- **Product 2** is used for "Valid Add to Cart" tests and is forced to 10 stock items.
-- **Product 8** is used exclusively for "Out-Of-Stock" tests and is completely disabled from order availability.

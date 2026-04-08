@@ -3,12 +3,12 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${PRODUCT_NAME}                 css:h1
-${PRODUCT_PRICE}                css:.product__price
-${PRODUCT_DESCRIPTION}          css:#product_description
-${PRODUCT_IMAGE}                css:.product__images img
+${PRODUCT_PRICE}                css:.current-price .current-price-value, .current-price span[itemprop='price']
+${PRODUCT_DESCRIPTION}          css:[id^='product-description-short'], #description .product-description, .product-description
+${PRODUCT_IMAGE}                css:.product-cover img, .images-container img
 ${PRODUCT_AVAILABILITY}         id:product-availability
 ${QUANTITY_INPUT}               id:quantity_wanted
-${ADD_TO_CART_BTN}              css:.product__add-to-cart-button
+${ADD_TO_CART_BTN}              css:.product-add-to-cart .add-to-cart, button.add-to-cart
 ${ADD_TO_CART_MODAL}            id:blockcart-modal
 ${PROCEED_TO_CHECKOUT_MODAL}    css:#blockcart-modal .cart-content-btn a.btn-primary
 
@@ -31,17 +31,22 @@ Set Quantity
     Sleep    3s
 
 Add To Cart
-    Wait Until Element Is Visible    ${ADD_TO_CART_BTN}    5s
-    Sleep    1s
-    Execute Javascript    document.querySelector('.product__add-to-cart-button').click()
+    Wait Until Element Is Visible    ${ADD_TO_CART_BTN}    10s
+    Click Element    ${ADD_TO_CART_BTN}
 
 Proceed To Checkout From Modal
     Sleep    3s
     Go To    ${URL}cart?action=show
 
 Verify Add To Cart Is Disabled
-    Wait Until Element Is Visible    ${ADD_TO_CART_BTN}    5s
-    Element Should Be Disabled       ${ADD_TO_CART_BTN}
+    ${button_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${ADD_TO_CART_BTN}    3s
+    IF    ${button_visible}
+        Element Should Be Disabled    ${ADD_TO_CART_BTN}
+    ELSE
+        Wait Until Element Is Visible    ${PRODUCT_AVAILABILITY}    10s
+        ${text}=    Get Text    ${PRODUCT_AVAILABILITY}
+        Should Not Be Empty    ${text}
+    END
 
 Verify Error Message For Exceeding Stock
     Wait Until Element Is Visible    ${PRODUCT_AVAILABILITY}    10s

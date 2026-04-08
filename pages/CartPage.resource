@@ -3,11 +3,11 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${CART_ITEMS_LIST}              css:.cart__item
-${ITEM_QTY_INPUT}               css:.js-cart-line-product-quantity
-${ITEM_REMOVE_BTN}              css:.js-remove-from-cart
-${ITEM_LINE_TOTAL}              css:.product-line__price
-${CART_TOTAL}                   css:.cart-summary__total .cart-summary__value
-${EMPTY_CART_MESSAGE}           css:.cart__empty
+${ITEM_QTY_INPUT}               css:input.js-cart-line-product-quantity
+${ITEM_REMOVE_BTN}              css:.remove-from-cart, .js-remove-from-cart
+${ITEM_LINE_TOTAL}              css:.product-line-grid-right .current-price .price, .product-line-grid-right .product-price
+${CART_TOTAL}                   css:.cart-summary .value, .cart-summary-line.cart-total .value
+${EMPTY_CART_MESSAGE}           xpath=//*[contains(@class,'no-items') or contains(.,'There are no more items in your cart')]
 
 *** Keywords ***
 Change Item Quantity
