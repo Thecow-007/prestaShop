@@ -1,0 +1,5 @@
+Faker==40.13.0
+robotframework==7.4.2
+robotframework-faker==6.0.0
+tzdata==2026.1
+wrapt==2.1.2
