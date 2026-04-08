@@ -22,13 +22,10 @@ Verify Product Details Displayed
 Set Quantity
     [Arguments]    ${qty}
     Wait Until Element Is Visible    ${QUANTITY_INPUT}    5s
-    # PrestaShop quantity uses an input with up/down arrows. We clear with JS or double click and type.
-    Press Keys    ${QUANTITY_INPUT}    CTRL+a+BACKSPACE
+    # Input Text calls clear() then send_keys() which triggers PrestaShop's quantity validation
     Input Text    ${QUANTITY_INPUT}    ${qty}
-    Press Keys    ${QUANTITY_INPUT}    ENTER
     Click Element    css:body
-    # Allow PrestaShop to complete its backend debounce validation before adding to cart
-    Sleep    3s
+    Sleep    5s
 
 Add To Cart
     Wait Until Element Is Visible    ${ADD_TO_CART_BTN}    10s

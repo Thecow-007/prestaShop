@@ -34,3 +34,10 @@ TC-07-02 Remove Item from Cart
     Proceed To Checkout From Modal
     Remove Item From Cart
     Verify Cart Is Empty
+
+TC-07-03 Empty Cart Displays Appropriate Message
+    [Documentation]    Verify that visiting the cart without adding any items shows an empty cart message
+    # Open the site and navigate directly to the cart page without adding products
+    Open Home Page
+    Go To    ${URL}cart?action=show
+    Verify Cart Is Empty
