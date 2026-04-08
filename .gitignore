@@ -1,1 +1,11 @@
-docker-compose.yml
+.env
+results/
+selenium-screenshot-*.png
+log.html
+report.html
+output.xml
+__pycache__/
+*.pyc
+CLAUDE.md
+.claude
+log.html

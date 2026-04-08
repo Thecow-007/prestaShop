@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.13.12 on win32)" generated="20260407 20:19:29.254" rpa="false" schemaversion="4">
+<suite id="s1" name="Tests" source="C:\Users\nicho\Documents\CST8400\project\prestaShop\tests">
+<suite id="s1-s1" name="Test Cart" source="C:\Users\nicho\Documents\CST8400\project\prestaShop\tests\test_cart.robot">
+<test id="s1-s1-t1" name="TC-06-01 Add Item to Cart with Valid Quantity" line="8">
+<kw name="Open Home Page" library="Common">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260407 20:19:32.054" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000020028112120&gt;</msg>
+<status status="PASS" starttime="20260407 20:19:32.007" endtime="20260407 20:19:32.055"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${args}</var>
+<arg>--disable-blink-features=AutomationControlled</arg>
+<arg>--start-maximized</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20260407 20:19:32.055" level="INFO">${args} = ['--disable-blink-features=AutomationControlled', '--start-maximized']</msg>
+<status status="PASS" starttime="20260407 20:19:32.055" endtime="20260407 20:19:32.055"/>
+</kw>
+<for flavor="IN">
+<var>${arg}</var>
+<value>@{args}</value>
+<iter>
+<var name="${arg}">--disable-blink-features=AutomationControlled</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:19:32.055" endtime="20260407 20:19:32.056"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:32.055" endtime="20260407 20:19:32.056"/>
+</iter>
+<iter>
+<var name="${arg}">--start-maximized</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:19:32.056" endtime="20260407 20:19:32.056"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:32.056" endtime="20260407 20:19:32.056"/>
+</iter>
+<status status="PASS" starttime="20260407 20:19:32.055" endtime="20260407 20:19:32.056"/>
+</for>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${chrome_options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20260407 20:19:32.058" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20260407 20:19:32.056" endtime="20260407 20:19:34.137"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20260407 20:19:34.137" endtime="20260407 20:19:34.545"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:body</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:34.545" endtime="20260407 20:19:34.645"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:32.007" endtime="20260407 20:19:34.645"/>
+</kw>
+<kw name="Go To In-Stock Product" library="Common">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}index.php?id_product=2&amp;controller=product</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:19:34.647" level="INFO">Opening url 'http://localhost:8080/index.php?id_product=2&amp;controller=product'</msg>
+<status status="PASS" starttime="20260407 20:19:34.647" endtime="20260407 20:19:37.874"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:h1</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:37.875" endtime="20260407 20:19:37.913"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:34.646" endtime="20260407 20:19:37.913"/>
+</kw>
+<kw name="Add To Cart" library="ProductDetailPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:37.914" endtime="20260407 20:19:37.948"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:19:37.949" level="INFO">Clicking element 'css:.product-add-to-cart .add-to-cart, button.add-to-cart'.</msg>
+<status status="PASS" starttime="20260407 20:19:37.948" endtime="20260407 20:19:38.090"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:37.914" endtime="20260407 20:19:38.090"/>
+</kw>
+<kw name="Proceed To Checkout From Modal" library="ProductDetailPage">
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20260407 20:19:41.092" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20260407 20:19:38.091" endtime="20260407 20:19:41.093"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}cart?action=show</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:19:41.093" level="INFO">Opening url 'http://localhost:8080/cart?action=show'</msg>
+<status status="PASS" starttime="20260407 20:19:41.093" endtime="20260407 20:19:44.234"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:38.091" endtime="20260407 20:19:44.235"/>
+</kw>
+<kw name="Verify Item Quantity In Cart" library="CartPage">
+<arg>1</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ITEM_QTY_INPUT}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:44.236" endtime="20260407 20:19:44.293"/>
+</kw>
+<kw name="Get Value" library="SeleniumLibrary">
+<var>${actual}</var>
+<arg>${ITEM_QTY_INPUT}</arg>
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:19:44.339" level="INFO">${actual} = 1</msg>
+<status status="PASS" starttime="20260407 20:19:44.293" endtime="20260407 20:19:44.339"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${actual}</arg>
+<arg>${expected_qty}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20260407 20:19:44.339" endtime="20260407 20:19:44.339"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:44.235" endtime="20260407 20:19:44.339"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20260407 20:19:44.340" endtime="20260407 20:19:46.721"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:32.006" endtime="20260407 20:19:46.722"/>
+</test>
+<test id="s1-s1-t2" name="TC-06-02 Adding Quantity Exceeding Stock is Rejected" line="15">
+<kw name="Open Home Page" library="Common">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260407 20:19:46.727" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000002002812E850&gt;</msg>
+<status status="PASS" starttime="20260407 20:19:46.726" endtime="20260407 20:19:46.727"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${args}</var>
+<arg>--disable-blink-features=AutomationControlled</arg>
+<arg>--start-maximized</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20260407 20:19:46.727" level="INFO">${args} = ['--disable-blink-features=AutomationControlled', '--start-maximized']</msg>
+<status status="PASS" starttime="20260407 20:19:46.727" endtime="20260407 20:19:46.727"/>
+</kw>
+<for flavor="IN">
+<var>${arg}</var>
+<value>@{args}</value>
+<iter>
+<var name="${arg}">--disable-blink-features=AutomationControlled</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:19:46.728" endtime="20260407 20:19:46.728"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:46.727" endtime="20260407 20:19:46.728"/>
+</iter>
+<iter>
+<var name="${arg}">--start-maximized</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:19:46.728" endtime="20260407 20:19:46.728"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:46.728" endtime="20260407 20:19:46.728"/>
+</iter>
+<status status="PASS" starttime="20260407 20:19:46.727" endtime="20260407 20:19:46.728"/>
+</for>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${chrome_options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20260407 20:19:46.729" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20260407 20:19:46.728" endtime="20260407 20:19:48.405"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20260407 20:19:48.405" endtime="20260407 20:19:48.806"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:body</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:48.806" endtime="20260407 20:19:48.849"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:46.725" endtime="20260407 20:19:48.849"/>
+</kw>
+<kw name="Go To In-Stock Product" library="Common">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}index.php?id_product=2&amp;controller=product</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:19:48.851" level="INFO">Opening url 'http://localhost:8080/index.php?id_product=2&amp;controller=product'</msg>
+<status status="PASS" starttime="20260407 20:19:48.850" endtime="20260407 20:19:52.012"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:h1</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:52.012" endtime="20260407 20:19:52.047"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:48.850" endtime="20260407 20:19:52.048"/>
+</kw>
+<kw name="Set Quantity" library="ProductDetailPage">
+<arg>999</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${QUANTITY_INPUT}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:52.049" endtime="20260407 20:19:52.081"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>${QUANTITY_INPUT}</arg>
+<arg>CTRL+a+BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20260407 20:19:52.082" level="INFO">Sending key(s) ('CTRL+a+BACKSPACE',) to id:quantity_wanted element.</msg>
+<msg timestamp="20260407 20:19:52.402" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20260407 20:19:52.402" level="INFO">Sending key a</msg>
+<msg timestamp="20260407 20:19:52.402" level="INFO">Pressing special key BACKSPACE down.</msg>
+<msg timestamp="20260407 20:19:52.402" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20260407 20:19:52.402" level="INFO">Releasing special key BACKSPACE.</msg>
+<status status="PASS" starttime="20260407 20:19:52.081" endtime="20260407 20:19:52.452"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${QUANTITY_INPUT}</arg>
+<arg>${qty}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20260407 20:19:52.454" level="INFO">Typing text '999' into text field 'id:quantity_wanted'.</msg>
+<status status="PASS" starttime="20260407 20:19:52.453" endtime="20260407 20:19:52.639"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>${QUANTITY_INPUT}</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20260407 20:19:52.640" level="INFO">Sending key(s) ('ENTER',) to id:quantity_wanted element.</msg>
+<msg timestamp="20260407 20:19:52.939" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20260407 20:19:52.939" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20260407 20:19:52.639" endtime="20260407 20:19:52.962"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>css:body</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:19:52.963" level="INFO">Clicking element 'css:body'.</msg>
+<status status="PASS" starttime="20260407 20:19:52.962" endtime="20260407 20:19:53.092"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20260407 20:19:56.093" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20260407 20:19:53.092" endtime="20260407 20:19:56.094"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:52.048" endtime="20260407 20:19:56.094"/>
+</kw>
+<kw name="Verify Error Message For Exceeding Stock" library="ProductDetailPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_AVAILABILITY}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:56.095" endtime="20260407 20:19:56.134"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${text}</var>
+<arg>${PRODUCT_AVAILABILITY}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:19:56.192" level="INFO">${text} = 
+There are not enough products in stock</msg>
+<status status="PASS" starttime="20260407 20:19:56.134" endtime="20260407 20:19:56.192"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${text}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20260407 20:19:56.193" level="INFO">Length is 40</msg>
+<status status="PASS" starttime="20260407 20:19:56.192" endtime="20260407 20:19:56.193"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:56.094" endtime="20260407 20:19:56.193"/>
+</kw>
+<kw name="Verify Add To Cart Is Disabled" library="ProductDetailPage">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${button_visible}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${ADD_TO_CART_BTN}</arg>
+<arg>3s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<arg>3s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:19:56.194" endtime="20260407 20:19:56.233"/>
+</kw>
+<msg timestamp="20260407 20:19:56.234" level="INFO">${button_visible} = True</msg>
+<status status="PASS" starttime="20260407 20:19:56.194" endtime="20260407 20:19:56.234"/>
+</kw>
+<if>
+<branch type="IF" condition="${button_visible}">
+<kw name="Element Should Be Disabled" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="PASS" starttime="20260407 20:19:56.234" endtime="20260407 20:19:56.269"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:56.234" endtime="20260407 20:19:56.269"/>
+</branch>
+<branch type="ELSE">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_AVAILABILITY}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" starttime="20260407 20:19:56.269" endtime="20260407 20:19:56.269"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${text}</var>
+<arg>${PRODUCT_AVAILABILITY}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20260407 20:19:56.269" endtime="20260407 20:19:56.269"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${text}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20260407 20:19:56.270" endtime="20260407 20:19:56.270"/>
+</kw>
+<status status="NOT RUN" starttime="20260407 20:19:56.269" endtime="20260407 20:19:56.270"/>
+</branch>
+<status status="PASS" starttime="20260407 20:19:56.234" endtime="20260407 20:19:56.270"/>
+</if>
+<status status="PASS" starttime="20260407 20:19:56.194" endtime="20260407 20:19:56.270"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20260407 20:19:56.271" endtime="20260407 20:19:58.666"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:46.724" endtime="20260407 20:19:58.667"/>
+</test>
+<test id="s1-s1-t3" name="TC-07-01 Update Item Quantity in Cart Updates Total" line="22">
+<kw name="Open Home Page" library="Common">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260407 20:19:58.672" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000020028210B90&gt;</msg>
+<status status="PASS" starttime="20260407 20:19:58.671" endtime="20260407 20:19:58.672"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${args}</var>
+<arg>--disable-blink-features=AutomationControlled</arg>
+<arg>--start-maximized</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20260407 20:19:58.673" level="INFO">${args} = ['--disable-blink-features=AutomationControlled', '--start-maximized']</msg>
+<status status="PASS" starttime="20260407 20:19:58.673" endtime="20260407 20:19:58.673"/>
+</kw>
+<for flavor="IN">
+<var>${arg}</var>
+<value>@{args}</value>
+<iter>
+<var name="${arg}">--disable-blink-features=AutomationControlled</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:19:58.674" endtime="20260407 20:19:58.674"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:58.674" endtime="20260407 20:19:58.674"/>
+</iter>
+<iter>
+<var name="${arg}">--start-maximized</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:19:58.674" endtime="20260407 20:19:58.675"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:58.674" endtime="20260407 20:19:58.675"/>
+</iter>
+<status status="PASS" starttime="20260407 20:19:58.673" endtime="20260407 20:19:58.675"/>
+</for>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${chrome_options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20260407 20:19:58.676" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20260407 20:19:58.675" endtime="20260407 20:20:00.457"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20260407 20:20:00.457" endtime="20260407 20:20:00.844"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:body</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:00.844" endtime="20260407 20:20:00.879"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:58.670" endtime="20260407 20:20:00.879"/>
+</kw>
+<kw name="Go To In-Stock Product" library="Common">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}index.php?id_product=2&amp;controller=product</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:20:00.881" level="INFO">Opening url 'http://localhost:8080/index.php?id_product=2&amp;controller=product'</msg>
+<status status="PASS" starttime="20260407 20:20:00.881" endtime="20260407 20:20:04.129"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:h1</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:04.129" endtime="20260407 20:20:04.174"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:00.880" endtime="20260407 20:20:04.174"/>
+</kw>
+<kw name="Add To Cart" library="ProductDetailPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:04.176" endtime="20260407 20:20:04.214"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:20:04.215" level="INFO">Clicking element 'css:.product-add-to-cart .add-to-cart, button.add-to-cart'.</msg>
+<status status="PASS" starttime="20260407 20:20:04.214" endtime="20260407 20:20:04.351"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:04.175" endtime="20260407 20:20:04.351"/>
+</kw>
+<kw name="Proceed To Checkout From Modal" library="ProductDetailPage">
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20260407 20:20:07.355" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20260407 20:20:04.352" endtime="20260407 20:20:07.355"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}cart?action=show</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:20:07.356" level="INFO">Opening url 'http://localhost:8080/cart?action=show'</msg>
+<status status="PASS" starttime="20260407 20:20:07.355" endtime="20260407 20:20:10.508"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:04.351" endtime="20260407 20:20:10.508"/>
+</kw>
+<kw name="Change Item Quantity" library="CartPage">
+<arg>2</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ITEM_QTY_INPUT}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:10.510" endtime="20260407 20:20:10.559"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>${ITEM_QTY_INPUT}</arg>
+<arg>CTRL+a+BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20260407 20:20:10.561" level="INFO">Sending key(s) ('CTRL+a+BACKSPACE',) to css:input.js-cart-line-product-quantity element.</msg>
+<msg timestamp="20260407 20:20:10.891" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20260407 20:20:10.891" level="INFO">Sending key a</msg>
+<msg timestamp="20260407 20:20:10.891" level="INFO">Pressing special key BACKSPACE down.</msg>
+<msg timestamp="20260407 20:20:10.892" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20260407 20:20:10.892" level="INFO">Releasing special key BACKSPACE.</msg>
+<status status="PASS" starttime="20260407 20:20:10.559" endtime="20260407 20:20:10.936"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${ITEM_QTY_INPUT}</arg>
+<arg>${qty}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20260407 20:20:10.938" level="INFO">Typing text '2' into text field 'css:input.js-cart-line-product-quantity'.</msg>
+<status status="PASS" starttime="20260407 20:20:10.937" endtime="20260407 20:20:11.122"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>css:body</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:20:11.123" level="INFO">Clicking element 'css:body'.</msg>
+<status status="PASS" starttime="20260407 20:20:11.122" endtime="20260407 20:20:11.266"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20260407 20:20:13.268" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20260407 20:20:11.266" endtime="20260407 20:20:13.268"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:10.510" endtime="20260407 20:20:13.268"/>
+</kw>
+<kw name="Verify Line Total Updates" library="CartPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ITEM_LINE_TOTAL}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:13.270" endtime="20260407 20:20:13.308"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${ITEM_LINE_TOTAL}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:13.356" level="INFO">Element 'css:.product-line-grid-right .current-price .price, .product-line-grid-right .product-price' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:13.309" endtime="20260407 20:20:13.356"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:13.270" endtime="20260407 20:20:13.356"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20260407 20:20:13.356" endtime="20260407 20:20:15.759"/>
+</kw>
+<status status="PASS" starttime="20260407 20:19:58.669" endtime="20260407 20:20:15.759"/>
+</test>
+<test id="s1-s1-t4" name="TC-07-02 Remove Item from Cart" line="30">
+<kw name="Open Home Page" library="Common">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260407 20:20:15.767" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000200281C2650&gt;</msg>
+<status status="PASS" starttime="20260407 20:20:15.766" endtime="20260407 20:20:15.768"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${args}</var>
+<arg>--disable-blink-features=AutomationControlled</arg>
+<arg>--start-maximized</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20260407 20:20:15.768" level="INFO">${args} = ['--disable-blink-features=AutomationControlled', '--start-maximized']</msg>
+<status status="PASS" starttime="20260407 20:20:15.768" endtime="20260407 20:20:15.768"/>
+</kw>
+<for flavor="IN">
+<var>${arg}</var>
+<value>@{args}</value>
+<iter>
+<var name="${arg}">--disable-blink-features=AutomationControlled</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:20:15.769" endtime="20260407 20:20:15.769"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:15.769" endtime="20260407 20:20:15.769"/>
+</iter>
+<iter>
+<var name="${arg}">--start-maximized</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:20:15.769" endtime="20260407 20:20:15.769"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:15.769" endtime="20260407 20:20:15.769"/>
+</iter>
+<status status="PASS" starttime="20260407 20:20:15.768" endtime="20260407 20:20:15.769"/>
+</for>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${chrome_options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20260407 20:20:15.770" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20260407 20:20:15.770" endtime="20260407 20:20:17.506"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20260407 20:20:17.506" endtime="20260407 20:20:17.917"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:body</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:17.917" endtime="20260407 20:20:17.952"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:15.762" endtime="20260407 20:20:17.952"/>
+</kw>
+<kw name="Go To In-Stock Product" library="Common">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}index.php?id_product=2&amp;controller=product</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:20:17.954" level="INFO">Opening url 'http://localhost:8080/index.php?id_product=2&amp;controller=product'</msg>
+<status status="PASS" starttime="20260407 20:20:17.953" endtime="20260407 20:20:21.147"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:h1</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:21.147" endtime="20260407 20:20:21.187"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:17.953" endtime="20260407 20:20:21.187"/>
+</kw>
+<kw name="Add To Cart" library="ProductDetailPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:21.188" endtime="20260407 20:20:21.221"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:20:21.222" level="INFO">Clicking element 'css:.product-add-to-cart .add-to-cart, button.add-to-cart'.</msg>
+<status status="PASS" starttime="20260407 20:20:21.222" endtime="20260407 20:20:21.358"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:21.187" endtime="20260407 20:20:21.358"/>
+</kw>
+<kw name="Proceed To Checkout From Modal" library="ProductDetailPage">
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20260407 20:20:24.360" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20260407 20:20:21.359" endtime="20260407 20:20:24.361"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}cart?action=show</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:20:24.361" level="INFO">Opening url 'http://localhost:8080/cart?action=show'</msg>
+<status status="PASS" starttime="20260407 20:20:24.361" endtime="20260407 20:20:27.395"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:21.359" endtime="20260407 20:20:27.396"/>
+</kw>
+<kw name="Remove Item From Cart" library="CartPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ITEM_REMOVE_BTN}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:27.400" endtime="20260407 20:20:27.461"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${ITEM_REMOVE_BTN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20260407 20:20:27.461" level="INFO">Clicking element 'css:.remove-from-cart, .js-remove-from-cart'.</msg>
+<status status="PASS" starttime="20260407 20:20:27.461" endtime="20260407 20:20:27.638"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20260407 20:20:29.639" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20260407 20:20:27.638" endtime="20260407 20:20:29.639"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:27.399" endtime="20260407 20:20:29.639"/>
+</kw>
+<kw name="Verify Cart Is Empty" library="CartPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${EMPTY_CART_MESSAGE}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:29.641" endtime="20260407 20:20:29.683"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${EMPTY_CART_MESSAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:29.717" level="INFO">Element 'xpath=//*[contains(@class,'no-items') or contains(.,'There are no more items in your cart')]' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:29.683" endtime="20260407 20:20:29.717"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:29.641" endtime="20260407 20:20:29.717"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20260407 20:20:29.718" endtime="20260407 20:20:32.079"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:15.761" endtime="20260407 20:20:32.080"/>
+</test>
+<status status="PASS" starttime="20260407 20:19:29.416" endtime="20260407 20:20:32.083"/>
+</suite>
+<suite id="s1-s2" name="Test Product Detail" source="C:\Users\nicho\Documents\CST8400\project\prestaShop\tests\test_product_detail.robot">
+<test id="s1-s2-t1" name="TC-05-01 Product Detail Page Displays All Required Information" line="7">
+<kw name="Open Home Page" library="Common">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260407 20:20:32.098" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000200281C1F30&gt;</msg>
+<status status="PASS" starttime="20260407 20:20:32.097" endtime="20260407 20:20:32.098"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${args}</var>
+<arg>--disable-blink-features=AutomationControlled</arg>
+<arg>--start-maximized</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20260407 20:20:32.098" level="INFO">${args} = ['--disable-blink-features=AutomationControlled', '--start-maximized']</msg>
+<status status="PASS" starttime="20260407 20:20:32.098" endtime="20260407 20:20:32.098"/>
+</kw>
+<for flavor="IN">
+<var>${arg}</var>
+<value>@{args}</value>
+<iter>
+<var name="${arg}">--disable-blink-features=AutomationControlled</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:20:32.099" endtime="20260407 20:20:32.099"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:32.098" endtime="20260407 20:20:32.099"/>
+</iter>
+<iter>
+<var name="${arg}">--start-maximized</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:20:32.099" endtime="20260407 20:20:32.099"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:32.099" endtime="20260407 20:20:32.099"/>
+</iter>
+<status status="PASS" starttime="20260407 20:20:32.098" endtime="20260407 20:20:32.099"/>
+</for>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${chrome_options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20260407 20:20:32.100" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20260407 20:20:32.099" endtime="20260407 20:20:33.817"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20260407 20:20:33.818" endtime="20260407 20:20:34.227"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:body</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:34.227" endtime="20260407 20:20:34.264"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:32.096" endtime="20260407 20:20:34.264"/>
+</kw>
+<kw name="Go To In-Stock Product" library="Common">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}index.php?id_product=2&amp;controller=product</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:20:34.265" level="INFO">Opening url 'http://localhost:8080/index.php?id_product=2&amp;controller=product'</msg>
+<status status="PASS" starttime="20260407 20:20:34.265" endtime="20260407 20:20:37.434"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:h1</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:37.434" endtime="20260407 20:20:37.467"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:34.265" endtime="20260407 20:20:37.468"/>
+</kw>
+<kw name="Verify Product Details Displayed" library="ProductDetailPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_NAME}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:37.468" endtime="20260407 20:20:37.518"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_PRICE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:37.549" level="INFO">Element 'css:.current-price .current-price-value, .current-price span[itemprop='price']' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:37.518" endtime="20260407 20:20:37.549"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_DESCRIPTION}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:37.581" level="INFO">Element 'css:[id^='product-description-short'], #description .product-description, .product-description' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:37.549" endtime="20260407 20:20:37.581"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_IMAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:37.614" level="INFO">Element 'css:.product-cover img, .images-container img' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:37.581" endtime="20260407 20:20:37.614"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:37.468" endtime="20260407 20:20:37.614"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20260407 20:20:37.615" endtime="20260407 20:20:39.917"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:32.093" endtime="20260407 20:20:39.918"/>
+</test>
+<test id="s1-s2-t2" name="TC-05-02 Out-of-Stock Product Cannot Be Added to Cart" line="12">
+<kw name="Open Home Page" library="Common">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260407 20:20:39.922" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000200280EF2F0&gt;</msg>
+<status status="PASS" starttime="20260407 20:20:39.921" endtime="20260407 20:20:39.922"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${args}</var>
+<arg>--disable-blink-features=AutomationControlled</arg>
+<arg>--start-maximized</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20260407 20:20:39.922" level="INFO">${args} = ['--disable-blink-features=AutomationControlled', '--start-maximized']</msg>
+<status status="PASS" starttime="20260407 20:20:39.922" endtime="20260407 20:20:39.922"/>
+</kw>
+<for flavor="IN">
+<var>${arg}</var>
+<value>@{args}</value>
+<iter>
+<var name="${arg}">--disable-blink-features=AutomationControlled</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:20:39.922" endtime="20260407 20:20:39.923"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:39.922" endtime="20260407 20:20:39.923"/>
+</iter>
+<iter>
+<var name="${arg}">--start-maximized</var>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260407 20:20:39.923" endtime="20260407 20:20:39.923"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:39.923" endtime="20260407 20:20:39.923"/>
+</iter>
+<status status="PASS" starttime="20260407 20:20:39.922" endtime="20260407 20:20:39.923"/>
+</for>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${chrome_options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20260407 20:20:39.924" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20260407 20:20:39.923" endtime="20260407 20:20:41.782"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20260407 20:20:41.782" endtime="20260407 20:20:42.194"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:body</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:42.194" endtime="20260407 20:20:42.231"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:39.921" endtime="20260407 20:20:42.231"/>
+</kw>
+<kw name="Go To Out-Of-Stock Product" library="Common">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}index.php?id_product=8&amp;controller=product</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260407 20:20:42.232" level="INFO">Opening url 'http://localhost:8080/index.php?id_product=8&amp;controller=product'</msg>
+<status status="PASS" starttime="20260407 20:20:42.232" endtime="20260407 20:20:45.431"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>css:h1</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:45.431" endtime="20260407 20:20:45.467"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:42.232" endtime="20260407 20:20:45.467"/>
+</kw>
+<kw name="Verify Product Details Displayed" library="ProductDetailPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_NAME}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:45.468" endtime="20260407 20:20:45.496"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_PRICE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:45.528" level="INFO">Element 'css:.current-price .current-price-value, .current-price span[itemprop='price']' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:45.496" endtime="20260407 20:20:45.528"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_DESCRIPTION}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:45.558" level="INFO">Element 'css:[id^='product-description-short'], #description .product-description, .product-description' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:45.528" endtime="20260407 20:20:45.559"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_IMAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20260407 20:20:45.589" level="INFO">Element 'css:.product-cover img, .images-container img' is displayed.</msg>
+<status status="PASS" starttime="20260407 20:20:45.559" endtime="20260407 20:20:45.589"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:45.468" endtime="20260407 20:20:45.589"/>
+</kw>
+<kw name="Verify Add To Cart Is Disabled" library="ProductDetailPage">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${button_visible}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${ADD_TO_CART_BTN}</arg>
+<arg>3s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<arg>3s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260407 20:20:45.591" endtime="20260407 20:20:45.622"/>
+</kw>
+<msg timestamp="20260407 20:20:45.623" level="INFO">${button_visible} = True</msg>
+<status status="PASS" starttime="20260407 20:20:45.591" endtime="20260407 20:20:45.623"/>
+</kw>
+<if>
+<branch type="IF" condition="${button_visible}">
+<kw name="Element Should Be Disabled" library="SeleniumLibrary">
+<arg>${ADD_TO_CART_BTN}</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="PASS" starttime="20260407 20:20:45.623" endtime="20260407 20:20:45.654"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:45.623" endtime="20260407 20:20:45.654"/>
+</branch>
+<branch type="ELSE">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PRODUCT_AVAILABILITY}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" starttime="20260407 20:20:45.654" endtime="20260407 20:20:45.655"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${text}</var>
+<arg>${PRODUCT_AVAILABILITY}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20260407 20:20:45.655" endtime="20260407 20:20:45.655"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${text}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20260407 20:20:45.655" endtime="20260407 20:20:45.655"/>
+</kw>
+<status status="NOT RUN" starttime="20260407 20:20:45.654" endtime="20260407 20:20:45.655"/>
+</branch>
+<status status="PASS" starttime="20260407 20:20:45.623" endtime="20260407 20:20:45.655"/>
+</if>
+<status status="PASS" starttime="20260407 20:20:45.590" endtime="20260407 20:20:45.655"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20260407 20:20:45.656" endtime="20260407 20:20:47.950"/>
+</kw>
+<status status="PASS" starttime="20260407 20:20:39.920" endtime="20260407 20:20:47.951"/>
+</test>
+<status status="PASS" starttime="20260407 20:20:32.085" endtime="20260407 20:20:47.953"/>
+</suite>
+<status status="PASS" starttime="20260407 20:19:29.257" endtime="20260407 20:20:47.956"/>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="6" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1" name="Test Cart">Tests.Test Cart</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s2" name="Test Product Detail">Tests.Test Product Detail</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
