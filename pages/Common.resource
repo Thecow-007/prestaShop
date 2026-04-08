@@ -4,7 +4,8 @@ Library    SeleniumLibrary
 *** Variables ***
 ${DOMAIN}                 localhost:8080
 ${URL}                    http://${DOMAIN}/
-${BROWSER}                chrome
+${BROWSER}                chrome    
+${USERNAME_ELEMENT}           css=#userMenuButton > span.header-block__title.d-lg-inline.d-none
 
 *** Keywords ***
 Open Home Page
@@ -16,6 +17,16 @@ Open Home Page
     Open Browser    ${URL}    ${BROWSER}    options=${chrome_options}
     Set Window Size    1920    1080
     Wait Until Element Is Visible    css:body    10s
+
+Go To Login
+    Wait Until Page Contains    Sign in    10s
+    Click Link    css=#_desktop_ps_customersignin > div > div > a
+    Wait Until Element Is Visible    css:h1    10s
+
+Go To Register
+    Wait Until Page Contains    Create your account    10s
+    Click Link    css=#content > div > div > div > a
+    Wait Until Element Is Visible    css=#content    10s  
 
 Go To In-Stock Product
     # The Hummingbird Printed Sweater

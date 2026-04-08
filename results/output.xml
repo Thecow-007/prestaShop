@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.0 on win32)" generated="2026-04-08T16:50:01.245779" rpa="false" schemaversion="5">
+<suite id="s1" name="Project III" source="C:\Users\Robert Ohly\Documents\Algonquin\CST8513 QA Test\Project III">
+<suite id="s1-s1" name="Tests" source="C:\Users\Robert Ohly\Documents\Algonquin\CST8513 QA Test\Project III\tests">
+<suite id="s1-s1-s1" name="Test Auth" source="C:\Users\Robert Ohly\Documents\Algonquin\CST8513 QA Test\Project III\tests\test_auth.robot">
+<test id="s1-s1-s1-t1" name="TC-02-03 Successful Logout Clears Session" line="23">
+<kw name="Open Home Page" owner="Common">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-04-08T16:50:02.382571" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000012B7A0F6270&gt;</msg>
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-04-08T16:50:02.375587" elapsed="0.008307"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2026-04-08T16:50:02.386241" level="INFO">${args} = ['--disable-blink-features=AutomationControlled', '--start-maximized']</msg>
+<var>${args}</var>
+<arg>--disable-blink-features=AutomationControlled</arg>
+<arg>--start-maximized</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2026-04-08T16:50:02.384571" elapsed="0.002529"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-04-08T16:50:02.388768" elapsed="0.001167"/>
+</kw>
+<var name="${arg}">--disable-blink-features=AutomationControlled</var>
+<status status="PASS" start="2026-04-08T16:50:02.388282" elapsed="0.001981"/>
+</iter>
+<iter>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${arg}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-04-08T16:50:02.391083" elapsed="0.001029"/>
+</kw>
+<var name="${arg}">--start-maximized</var>
+<status status="PASS" start="2026-04-08T16:50:02.390645" elapsed="0.001758"/>
+</iter>
+<var>${arg}</var>
+<value>@{args}</value>
+<status status="PASS" start="2026-04-08T16:50:02.387566" elapsed="0.005055"/>
+</for>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-04-08T16:50:02.394158" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${chrome_options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-04-08T16:50:02.393125" elapsed="1.686078"/>
+</kw>
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2026-04-08T16:50:04.079828" elapsed="0.406254"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:body</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-04-08T16:50:04.486803" elapsed="0.039727"/>
+</kw>
+<status status="PASS" start="2026-04-08T16:50:02.371857" elapsed="2.155152"/>
+</kw>
+<kw name="Go To Login" owner="Common">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Sign in</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-04-08T16:50:04.529158" elapsed="0.022823"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2026-04-08T16:50:04.553561" level="INFO">Clicking link 'css=#_desktop_ps_customersignin &gt; div &gt; div &gt; a'.</msg>
+<arg>css=#_desktop_ps_customersignin &gt; div &gt; div &gt; a</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2026-04-08T16:50:04.552754" elapsed="0.433561"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:h1</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-04-08T16:50:04.986984" elapsed="0.041854"/>
+</kw>
+<status status="PASS" start="2026-04-08T16:50:04.527971" elapsed="0.501286"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-04-08T16:50:05.030816" level="INFO">Typing text 'test@gmail.com' into text field 'css=#field-email'.</msg>
+<arg>css=#field-email</arg>
+<arg>test@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-04-08T16:50:05.029965" elapsed="0.221403"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-04-08T16:50:05.253228" level="INFO">Typing text 'Shp1DLHKhe6yAPR' into text field 'css=#field-password'.</msg>
+<arg>css=#field-password</arg>
+<arg>Shp1DLHKhe6yAPR</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-04-08T16:50:05.252341" elapsed="0.177493"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-04-08T16:50:05.431525" level="INFO">Clicking button 'css=#submit-login'.</msg>
+<arg>css=#submit-login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-04-08T16:50:05.430566" elapsed="1.552801"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Test User</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-04-08T16:50:06.984252" elapsed="0.031661"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-04-08T16:50:07.017669" level="INFO">Clicking button 'css=#userMenuButton'.</msg>
+<arg>css=#userMenuButton</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-04-08T16:50:07.016803" elapsed="0.157520"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2026-04-08T16:50:07.176021" level="INFO">Clicking link 'css=#_desktop_ps_customersignin &gt; div &gt; div &gt; div &gt; a:nth-child(8)'.</msg>
+<arg>css=#_desktop_ps_customersignin &gt; div &gt; div &gt; div &gt; a:nth-child(8)</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2026-04-08T16:50:07.175260" elapsed="0.587013"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Sign in</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-04-08T16:50:07.763187" elapsed="0.022992"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-04-08T16:50:07.787817" elapsed="2.392540"/>
+</kw>
+<status status="PASS" start="2026-04-08T16:50:02.362193" elapsed="7.818816"/>
+</test>
+<status status="PASS" start="2026-04-08T16:50:01.367390" elapsed="8.823530"/>
+</suite>
+<status status="PASS" start="2026-04-08T16:50:01.353822" elapsed="8.845785"/>
+</suite>
+<status status="PASS" start="2026-04-08T16:50:01.256736" elapsed="8.961086"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Project III" id="s1" pass="1" fail="0" skip="0">Project III</stat>
+<stat name="Tests" id="s1-s1" pass="1" fail="0" skip="0">Project III.Tests</stat>
+<stat name="Test Auth" id="s1-s1-s1" pass="1" fail="0" skip="0">Project III.Tests.Test Auth</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
