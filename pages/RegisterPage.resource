@@ -14,7 +14,7 @@ ${PRIVACY_CHECKBOX}    css=#field-customer_privacy
 ${TOC_CHECKBOX}    css=#field-psgdpr
 ${SUBMIT_BUTTON}    css=.form-control-submit
 ${WAS_VALIDATED}    css:#customer-form.was-validated
-@{TITLES}=       Create List    Mr    Mrs
+@{TITLES}=       Create List    Mr    Mrs    N/A
 
 *** Keywords ***
 Generate Registration Data
@@ -22,8 +22,10 @@ Generate Registration Data
     
     IF    '${title}' == 'Mr'
         ${first_name}=    FakerLibrary.First Name Male
-    ELSE
+    ELSE IF    '${title}' == 'Mrs'
         ${first_name}=    FakerLibrary.First Name Female
+    ELSE
+        ${first_name}=    FakerLibrary.First Name
     END
 
     ${last_name}=     FakerLibrary.Last Name
