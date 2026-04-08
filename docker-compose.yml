@@ -1,7 +1,7 @@
-version: '3'
-
 services:
   mysql:
+    # Use 'platform' to force the Intel version on Macs
+    platform: linux/amd64
     image: mysql:5.7
     container_name: ps-db
     environment:
@@ -13,6 +13,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   prestashop:
+    # PrestaShop latest supports both architectures automatically
     image: prestashop/prestashop:latest
     container_name: ps-app
     ports:
@@ -27,9 +28,9 @@ services:
       - PS_INSTALL_AUTO=1
       - PS_FOLDER_ADMIN=admin-dev
       - PS_FOLDER_INSTALL=install_dev
-      - PS_DOMAIN=localhost:8080 # Changed to localhost
+      - PS_DOMAIN=localhost:8080
       - PS_HANDLE_DYNAMIC_DOMAIN=0
-      - PS_ENABLE_SSL=0 # Set to 0 for easier local testing
+      - PS_ENABLE_SSL=0
     networks:
       - prestashop-net
       - web-main-net
