@@ -21,8 +21,6 @@ TC-03-02 Filter Products by Price Range
 TC-03-03 Sort Products by Price Ascending
     Open Accessories Category
     Sort Products By    Price, low to high
-    
-    # Validation Logic
     ${actual_prices}=      Get All Product Prices As Floats
     ${expected_prices}=    Evaluate    sorted(${actual_prices})
     Lists Should Be Equal  ${actual_prices}    ${expected_prices}
@@ -32,6 +30,5 @@ TC-03-04 Filter Products by Colour
     Open Accessories Category
     Wait Until Page Contains    Color    10s
     Filter By Color             Black
-    
     Verify Product Count        3
     Wait Until Page Contains    Color: Black    10s

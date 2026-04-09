@@ -19,7 +19,7 @@ TC-01-01 Successful Account Registration with Valid Inputs
     Select Checkbox    ${PRIVACY_CHECKBOX}
     Select Checkbox    ${TOC_CHECKBOX}
     Click Button    ${SUBMIT_BUTTON}
-    Wait Until Page Contains    ${FULL_NAME}    10s
+    Page Should Contain    ${FULL_NAME}
 
 TC-01-03 Registration Rejected for Missing Required Fields 
     IF    '${TITLE}' == 'Mr'
@@ -31,4 +31,4 @@ TC-01-03 Registration Rejected for Missing Required Fields
     END
     Input Text      ${BIRTHDAY_FIELD}     ${DOB}
     Click Button    ${SUBMIT_BUTTON}
-    Wait Until Page Contains Element    ${WAS_VALIDATED}    10s
+    Page Should Contain Element    ${WAS_VALIDATED}    10s

@@ -40,7 +40,11 @@ Sort Products By
 
 Verify Product Count
     [Arguments]    ${expected_count}
-    Wait Until Page Contains    There are ${expected_count} products.    10s
+    IF    ${expected_count} == 1
+        Wait Until Page Contains    There is 1 product.    10s
+    ELSE
+        Wait Until Page Contains    There are ${expected_count} products.    10s
+    END
     Page Should Contain Element    ${PRODUCT_IMAGE}    limit=${expected_count}
 
 Get All Product Prices As Floats
