@@ -14,7 +14,7 @@ TC-01-01 Successful Account Registration with Valid Inputs
     Input Text      ${FIRSTNAME_FIELD}    ${FIRST_NAME}  
     Input Text      ${LASTNAME_FIELD}     ${LAST_NAME}    
     Input Text      ${EMAIL_FIELD}        ${EMAIL}
-    Input Text      ${PASSWORD_FIELD}     ${PASSWORD}
+    Input Text      ${PASSWORD_FIELD}     ${TEST_PASSWORD}
     Input Text      ${BIRTHDAY_FIELD}     ${DOB}
     Select Checkbox    ${PRIVACY_CHECKBOX}
     Select Checkbox    ${TOC_CHECKBOX}
