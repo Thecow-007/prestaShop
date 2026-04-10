@@ -1,13 +1,21 @@
 *** Settings ***
 Resource    ../pages/Common.resource
 Resource    ../pages/LoginPage.resource
+Suite Setup    Register Test Auth User
 Test Setup    Run Keywords    Open Home Page    AND    Go To Login
 Test Teardown  Close Browser
 
 *** Comments ***
-    Assumes the existance of the user: Test User test@gmail.com Shp1DLHKhe6yAPR
-    This is done with the intent of ensuring repeatability of login tests
-    While a user creation stage could be added it doesnt add much value for the added failure points
+    A fresh user is registered in Suite Setup so login tests have valid credentials.
+    This ensures repeatability without depending on a pre-existing account.
+
+*** Keywords ***
+Register Test Auth User
+    Open Home Page
+    ${email}=    Generate Unique Email
+    Register New Customer    Test    User    ${email}    ${VALID_PASSWORD}
+    Set Suite Variable    ${VALID_EMAIL}    ${email}
+    Close Browser
 
 *** Test Cases ***
 TC-02-01 Successful Login with Valid Credentials

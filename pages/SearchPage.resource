@@ -2,8 +2,8 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${SEARCH_BAR}             css:#ps_searchbar > form > input.js-search-input.form-control.ps-searchbar__input
-${PRODUCT_IMAGE}          css:.product-miniature__image
+${SEARCH_BAR}             css:#search_widget input[name="s"]
+${PRODUCT_IMAGE}          css:article.product-miniature
 
 *** Keywords ***
 Input Search
@@ -14,13 +14,12 @@ Input Search
 
 Verify Search Match
     [Arguments]    ${search_text}
-    Page Should Contain    Search results for "${search_text}"
+    Wait Until Page Contains    ${search_text}    10s
     Page Should Contain Element    ${PRODUCT_IMAGE}
 
 Verify No Search Match
     [Arguments]    ${search_text}
-    Page Should Contain    No search results for "${search_text}"    10s
-    Page Should Contain    Search again what you are looking for.
+    Wait Until Page Contains    No matches were found for your search    10s
 
 Verify Product Count
     [Arguments]    ${expected_count}

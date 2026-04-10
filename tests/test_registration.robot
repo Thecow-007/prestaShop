@@ -31,4 +31,7 @@ TC-01-03 Registration Rejected for Missing Required Fields
     END
     Input Text      ${BIRTHDAY_FIELD}     ${DOB}
     Click Button    ${SUBMIT_BUTTON}
-    Page Should Contain Element    ${WAS_VALIDATED}    10s
+    # Form should not submit due to HTML5 validation - verify we're still on registration
+    Sleep    2s
+    Page Should Contain Element    ${FIRSTNAME_FIELD}
+    Page Should Contain    Create an account

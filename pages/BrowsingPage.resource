@@ -3,11 +3,11 @@ Library    SeleniumLibrary
 Library    Collections
 
 *** Variables ***
-${ACCESSORIES_LINK}       css=#top-menu > li:nth-child(2) > div.ps-mainmenu__tree-item-wrapper > a
-${STATIONERY_LINK}        css=#submenu-category-6 > div > div > div.submenu__left.col-sm-3 > a.submenu__left-item.active
-${SORT_DROPDOWN}          id:sort_dropdown_button
-${PRODUCT_IMAGE}          css:.product-miniature__image
-${PRODUCT_PRICE}          css:.product-miniature__price
+${ACCESSORIES_LINK}       css:#category-6 > a
+${STATIONERY_LINK}        css:#category-7 > a
+${SORT_DROPDOWN}          css:div.products-sort-order button.select-title
+${PRODUCT_IMAGE}          css:article.product-miniature
+${PRODUCT_PRICE}          css:span.price
 
 *** Keywords ***
 Open Accessories Category
@@ -22,21 +22,28 @@ Hover Accessories And Select Stationery
 
 Set Price Range Exactly
     [Arguments]    ${min}    ${max}
-    Execute Javascript    document.querySelector('.noUi-target').noUiSlider.set([${min}, ${max}]);
+    Execute Javascript
+    ...    var $slider = jQuery('.ui-slider');
+    ...    $slider.slider('values', 0, ${min});
+    ...    $slider.slider('values', 1, ${max});
+    ...    var stopFn = $slider.slider('option', 'stop');
+    ...    if (stopFn) stopFn.call($slider[0], null, {values: [${min}, ${max}], handle: $slider.find('.ui-slider-handle')[1]});
+    Sleep    5s
 
 Filter By Color
     [Arguments]    ${color_name}
-    Click Button    css=#search-filters > div > section:nth-child(5) > button
-    Wait Until Page Contains    ${color_name}    10s
-    Click Element    xpath://label[contains(., '${color_name}')]
+    Scroll Element Into View    css:section[data-name="Color"] .facet-title
+    Click Element    css:section[data-name="Color"] .facet-title
+    Sleep    1s
+    Click Element    xpath://section[@data-name='Color']//a[contains(text(), '${color_name}')]
+    Sleep    2s
 
 Sort Products By
     [Arguments]    ${sort_option_text}
     Wait Until Element Is Visible    ${SORT_DROPDOWN}    10s
-    Click Button    ${SORT_DROPDOWN}
-    Click Link    css=#js-product-list-top > div > div.products__sort > div.products__sort-dropdown > div > a:nth-child(5)
-    Wait Until Page Contains    ${sort_option_text}    10s
-    Sleep    1s
+    Click Element    ${SORT_DROPDOWN}
+    Click Element    xpath://div[contains(@class,'products-sort-order')]//a[contains(text(),'${sort_option_text}')]
+    Sleep    2s
 
 Verify Product Count
     [Arguments]    ${expected_count}
@@ -52,7 +59,7 @@ Get All Product Prices As Floats
     ${prices}=    Create List
     FOR    ${el}    IN    @{elements}
         ${text}=    Get Text    ${el}
-        ${value}=    Evaluate    float('${text}'.removeprefix('€').replace(',', ''))
+        ${value}=    Evaluate    float('${text}'.replace('€', '').replace(',', '').strip())
         Append To List    ${prices}    ${value}
     END
     RETURN    ${prices}

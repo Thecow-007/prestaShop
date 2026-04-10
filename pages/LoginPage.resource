@@ -2,11 +2,10 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${LOGIN_EMAIL_FIELD}       css=#field-email
-${LOGIN_PASSWORD_FIELD}    css=#field-password
-${LOGIN_SUBMIT_BUTTON}     css=#submit-login
-${USER_MENU_BUTTON}        css=#userMenuButton
-${LOGOUT_LINK}             css=#_desktop_ps_customersignin > div > div > div > a:nth-child(8)
+${LOGIN_EMAIL_FIELD}       id:field-email
+${LOGIN_PASSWORD_FIELD}    id:field-password
+${LOGIN_SUBMIT_BUTTON}     id:submit-login
+${LOGOUT_LINK}             css:.user-info a.logout
 
 ${VALID_USER}        Test User
 ${VALID_EMAIL}       test@gmail.com
@@ -21,8 +20,8 @@ Login With Credentials
     Click Button    ${LOGIN_SUBMIT_BUTTON}
 
 Logout User
-    Click Button    ${USER_MENU_BUTTON}
-    Click Link      ${LOGOUT_LINK}
+    Wait Until Element Is Visible    ${LOGOUT_LINK}    10s
+    Click Element    ${LOGOUT_LINK}
 
 Verify User Is Logged In
     [Arguments]    ${username}

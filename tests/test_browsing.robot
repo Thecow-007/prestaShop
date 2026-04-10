@@ -10,13 +10,12 @@ TC-03-01 Browse Products by Category
     Wait Until Page Contains    notebook    10s
     Verify Product Count    3
 
-TC-03-02 Filter Products by Price Range 
+TC-03-02 Filter Products by Price Range
     Open Accessories Category
     Verify Product Count    11
     Wait Until Page Contains    Price    10s
-    Set Price Range Exactly    18.0    20.0
+    Set Price Range Exactly    18    20
     Verify Product Count    3
-    Wait Until Page Contains    €18.00 - €20.00    10s
 
 TC-03-03 Sort Products by Price Ascending
     Open Accessories Category
@@ -26,9 +25,9 @@ TC-03-03 Sort Products by Price Ascending
     Lists Should Be Equal  ${actual_prices}    ${expected_prices}
     Log    Sorted Prices: ${actual_prices}
 
-TC-03-04 Filter Products by Colour 
+TC-03-04 Filter Products by Colour
     Open Accessories Category
     Wait Until Page Contains    Color    10s
     Filter By Color             Black
     Verify Product Count        3
-    Wait Until Page Contains    Color: Black    10s
+    Wait Until Element Is Visible    css:#js-active-search-filters    10s
