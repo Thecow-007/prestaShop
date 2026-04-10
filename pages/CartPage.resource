@@ -3,6 +3,7 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${CART_ITEMS_LIST}              css:.cart__item
+${CART_ITEM}                    css:.cart-item
 ${ITEM_QTY_INPUT}               css:input.js-cart-line-product-quantity
 ${ITEM_REMOVE_BTN}              css:.remove-from-cart, .js-remove-from-cart
 ${ITEM_LINE_TOTAL}              css:.product-line-grid-right .current-price .price, .product-line-grid-right .product-price
@@ -37,3 +38,8 @@ Verify Line Total Updates
 Verify Cart Is Empty
     Wait Until Element Is Visible    ${EMPTY_CART_MESSAGE}    10s
     Element Should Be Visible        ${EMPTY_CART_MESSAGE}
+    
+Verify Item In Cart
+    [Documentation]    Confirms presence of an item in the cart
+    Wait Until Element Is Visible   ${CART_ITEM}  10s
+    Element Should Be Visible       ${CART_ITEM}
