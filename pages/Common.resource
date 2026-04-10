@@ -61,6 +61,16 @@ Open Home Page
     Go To    ${URL}
     Wait Until Page Does Not Contain    Cloudflare Access    15s
 
+Go To Login
+    Wait Until Page Contains    Sign in    10s
+    Click Link    css=#_desktop_ps_customersignin > div > div > a
+    Wait Until Element Is Visible    css:h1    10s
+
+Go To Register
+    Wait Until Page Contains    Create your account    10s
+    Click Link    css=#content > div > div > div > a
+    Wait Until Element Is Visible    css=#content    10s  
+
 Go To In-Stock Product
     [Documentation]    Navigate to the Hummingbird Printed Sweater (product ID 2)
     Go To    ${URL}index.php?id_product=2&controller=product
