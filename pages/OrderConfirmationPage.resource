@@ -2,6 +2,7 @@
 # OrderConfirmationPage.resource — Page object for the order confirmation page
 # Displayed after a successful checkout; shows order reference and summary
 Library    SeleniumLibrary
+Library    String
 
 *** Variables ***
 # Order confirmation page locators
@@ -27,3 +28,16 @@ Get Order Reference
     ${reference_text}=    Get Text    ${ORDER_REFERENCE}
     Log    Order reference details: ${reference_text}
     RETURN    ${reference_text}
+
+Get Clean Order Reference
+    [Documentation]    Retrieve only the order reference number from the confirmation page
+    ${full_text}=    Get Order Reference
+    
+    # Split by the colon and take the second part (index 1)
+    ${split_parts}=    Split String    ${full_text}    separator=:
+    ${ref}=    Set Variable    ${split_parts[1]}
+    
+    # Remove any accidental leading/trailing whitespace
+    ${ref}=    Strip String    ${ref}
+    
+    RETURN    ${ref}
