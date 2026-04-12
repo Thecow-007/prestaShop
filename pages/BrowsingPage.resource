@@ -1,27 +1,36 @@
 *** Settings ***
+# BrowsingPage.resource — Page object for category browsing, filtering, and sorting
+# Covers: category navigation, price range filter, colour filter, sort order, product count
 Library    SeleniumLibrary
 Library    Collections
 
 *** Variables ***
+# Category navigation locators
 ${ACCESSORIES_LINK}       css:#category-6 > a
 ${STATIONERY_LINK}        css:#category-7 > a
+
+# Sort and product listing locators
 ${SORT_DROPDOWN}          css:div.products-sort-order button.select-title
 ${PRODUCT_IMAGE}          css:article.product-miniature
 ${PRODUCT_PRICE}          css:span.price
 
 *** Keywords ***
 Open Accessories Category
+    [Documentation]    Navigate to the Accessories category page
     Wait Until Element Is Visible    ${ACCESSORIES_LINK}    10s
     Click Link    ${ACCESSORIES_LINK}
 
 Hover Accessories And Select Stationery
+    [Documentation]    Hover over Accessories to reveal the submenu, then click Stationery
     Wait Until Element Is Visible    ${ACCESSORIES_LINK}    10s
     Mouse Over    ${ACCESSORIES_LINK}
     Wait Until Element Is Visible    ${STATIONERY_LINK}    10s
     Click Element    ${STATIONERY_LINK}
 
 Set Price Range Exactly
+    [Documentation]    Set the price range filter via the jQuery UI slider widget
     [Arguments]    ${min}    ${max}
+    # Programmatically set slider values and trigger the stop event to apply the filter
     Execute Javascript
     ...    var $slider = jQuery('.ui-slider');
     ...    $slider.slider('values', 0, ${min});
@@ -31,6 +40,7 @@ Set Price Range Exactly
     Sleep    5s
 
 Filter By Color
+    [Documentation]    Expand the Color facet and select the specified colour filter
     [Arguments]    ${color_name}
     Scroll Element Into View    css:section[data-name="Color"] .facet-title
     Click Element    css:section[data-name="Color"] .facet-title
@@ -39,6 +49,7 @@ Filter By Color
     Sleep    2s
 
 Sort Products By
+    [Documentation]    Select a sort option from the product sort dropdown
     [Arguments]    ${sort_option_text}
     Wait Until Element Is Visible    ${SORT_DROPDOWN}    10s
     Click Element    ${SORT_DROPDOWN}
@@ -46,6 +57,7 @@ Sort Products By
     Sleep    2s
 
 Verify Product Count
+    [Documentation]    Assert that the page displays the expected number of products
     [Arguments]    ${expected_count}
     IF    ${expected_count} == 1
         Wait Until Page Contains    There is 1 product.    10s
@@ -55,6 +67,7 @@ Verify Product Count
     Page Should Contain Element    ${PRODUCT_IMAGE}    limit=${expected_count}
 
 Get All Product Prices As Floats
+    [Documentation]    Collect all visible product prices and return them as a list of floats
     ${elements}=    Get WebElements    ${PRODUCT_PRICE}
     ${prices}=    Create List
     FOR    ${el}    IN    @{elements}

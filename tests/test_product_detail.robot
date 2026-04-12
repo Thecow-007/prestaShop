@@ -2,7 +2,7 @@
 # test_product_detail.robot — Automation tests for the product detail page (FR-05)
 # Test cases: TC-05-01, TC-05-02
 # FR-05: View product detail information
-# Author: Daniel Bierman (041106553)
+# Authors: Robert Ohly (041092144), Daniel Bierman (041106553), Michael Dagher (041088202), Nicholas Jacques (041110677)
 Resource    ../pages/Common.resource
 Resource    ../pages/ProductDetailPage.resource
 Test Teardown    Close Browser

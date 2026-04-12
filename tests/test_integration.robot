@@ -1,7 +1,7 @@
 *** Settings ***
 # test_integration.robot — Automation tests for integration of various components
 # Test cases: TC-INT-01, TC-INT-02, TC-INT-03
-# Author: Michael Dagher (041088202)
+# Authors: Robert Ohly (041092144), Daniel Bierman (041106553), Michael Dagher (041088202), Nicholas Jacques (041110677)
 Resource    ../pages/Common.resource
 Resource    ../pages/ProductDetailPage.resource
 Resource    ../pages/CartPage.resource

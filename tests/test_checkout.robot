@@ -1,7 +1,7 @@
 *** Settings ***
 # test_checkout.robot — Automation tests for the checkout flow (FR-08) and order confirmation (FR-09)
 # Test cases: TC-08-01, TC-08-02, TC-08-03, TC-09-01
-# Author: Daniel Bierman (041106553)
+# Authors: Robert Ohly (041092144), Daniel Bierman (041106553), Michael Dagher (041088202), Nicholas Jacques (041110677)
 Resource    ../pages/Common.resource
 Resource    ../pages/ProductDetailPage.resource
 Resource    ../pages/CartPage.resource

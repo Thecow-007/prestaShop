@@ -1,7 +1,7 @@
 *** Settings ***
 # test_profile.robot — Automation tests for customer profile management (FR-11)
 # Test cases: TC-11-01, TC-11-02, TC-11-03
-# Author: Daniel Bierman (041106553)
+# Authors: Robert Ohly (041092144), Daniel Bierman (041106553), Michael Dagher (041088202), Nicholas Jacques (041110677)
 Resource    ../pages/Common.resource
 Resource    ../pages/ProfilePage.resource
 Test Teardown    Close Browser

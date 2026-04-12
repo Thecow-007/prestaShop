@@ -2,7 +2,7 @@
 # test_cart.robot — Automation tests for cart functionality (FR-06, FR-07)
 # Test cases: TC-06-01, TC-06-02, TC-07-01, TC-07-02, TC-07-03
 # FR-06: Add items to cart   FR-07: Manage cart contents
-# Author: Daniel Bierman (041106553)
+# Authors: Robert Ohly (041092144), Daniel Bierman (041106553), Michael Dagher (041088202), Nicholas Jacques (041110677)
 Resource    ../pages/Common.resource
 Resource    ../pages/ProductDetailPage.resource
 Resource    ../pages/CartPage.resource

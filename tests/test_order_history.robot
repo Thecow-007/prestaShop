@@ -1,7 +1,7 @@
 *** Settings ***
 # test_order_history.robot — Automation tests for order history (FR-10)
 # Test cases: TC-10-01, TC-10-02
-# Author: Daniel Bierman (041106553)
+# Authors: Robert Ohly (041092144), Daniel Bierman (041106553), Michael Dagher (041088202), Nicholas Jacques (041110677) 
 Resource    ../pages/Common.resource
 Resource    ../pages/ProductDetailPage.resource
 Resource    ../pages/CartPage.resource
