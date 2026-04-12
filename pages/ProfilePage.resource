@@ -37,6 +37,12 @@ Update Email
     Press Keys    ${FIELD_EMAIL}    CTRL+a+BACKSPACE
     Input Text    ${FIELD_EMAIL}    ${new_email}
 
+Enter New Password
+    [Documentation]    Enter a new password in the new-password field
+    [Arguments]    ${password}
+    Wait Until Element Is Visible    ${NEW_PASSWORD_FIELD}    10s
+    Input Text    ${NEW_PASSWORD_FIELD}    ${password}
+
 Enter Current Password
     [Documentation]    Enter the current password (required to save profile changes)
     [Arguments]    ${password}

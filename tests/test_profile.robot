@@ -1,6 +1,6 @@
 *** Settings ***
 # test_profile.robot — Automation tests for customer profile management (FR-11)
-# Test cases: TC-11-01, TC-11-02
+# Test cases: TC-11-01, TC-11-02, TC-11-03
 # Author: Daniel Bierman (041106553)
 Resource    ../pages/Common.resource
 Resource    ../pages/ProfilePage.resource
@@ -43,4 +43,23 @@ TC-11-02 Profile Update Rejected for Invalid Email
     # Step 5: Try to save
     Save Profile
     # Step 6: Verify an error message is displayed
+    Verify Profile Update Error
+
+TC-11-03 Password Change Requires Current Password
+    [Documentation]    Verify that changing the password is rejected when
+    ...    the wrong current password is provided.
+    [Tags]    medium    profile    FR-11
+    # Step 1: Register a fresh test account
+    Open Home Page
+    ${email}=    Generate Unique Email
+    Register New Customer    Test    User    ${email}    ${TEST_PASSWORD}
+    # Step 2: Navigate to the profile / identity page
+    Go To Profile Page
+    # Step 3: Enter a new password
+    Enter New Password    NewStr0ng@Pass!99
+    # Step 4: Enter an incorrect current password
+    Enter Current Password    WrongPassword123!
+    # Step 5: Try to save
+    Save Profile
+    # Step 6: Verify the change is rejected
     Verify Profile Update Error
